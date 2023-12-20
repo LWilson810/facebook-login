@@ -10,10 +10,18 @@ const options = {
     ],
     secret: "v7COYqKpEdnCbd5aISAw9BxjupOLKYCgBVZ2kwusMNs=", 
     callbacks: {
-        async redirect({url, baseUrl}) {
-            console.log("==========Callback function is run==================", url)
-          return url.startsWith(baseUrl) ? url : baseUrl;
-        },
+        async signIn(user, account, profile) {
+      return true
+    },
+    async redirect(url, baseUrl) {
+      return baseUrl
+    },
+    async session(session, user) {
+      return session
+    },
+    async jwt(token, user, account, profile, isNewUser) {
+      return token
+    }
       },
       // Set the callback URL to match the redirect URI in the Facebook Developer portal
 }
